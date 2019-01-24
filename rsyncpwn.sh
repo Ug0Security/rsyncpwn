@@ -1,7 +1,8 @@
+#export RSYNC_PASSWORD="rsync" // Avoid Password Prompt
 cat "iplist" | while read line
 do
    echo "Test $line En Cours .."
-   torify sshpass rsync --list-only  $line:: > testtmp.txt
+   torify rsync --list-only  $line:: > testtmp.txt
    grep -Eo '^[^ ]+' testtmp.txt > testtmp2.txt
    sed 's/^/'$line',/' testtmp2.txt >> share.txt
    rm testtmp*
